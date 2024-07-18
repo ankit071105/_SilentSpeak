@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Speak</title>
+    <meta name="description" content="Silent Speak is a groundbreaking project transforming communication with Morse code technology. Learn about hardware, software, and applications for silent communication.">
+    <meta name="keywords" content="silent speak, morse code, silent communication, hardware, software, app silent, silent speak website, morse code communication, communication app, assistive technology, accessibility technology">
+   <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="shortcut icon" href="images/21.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<style>
+    .po{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+    <header class="header" style="background-color: #acb4ec;">
+      
+        <nav class="navbar">
+            <a href="ok.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="game.html">Games</a>
+          <a href="video.html">Videos</a>
+          <a href="services.html">Services</a>
+        </nav>
+      
+    </header>
+    
+    <h1 style="text-align: center; font-size: 42px;margin-top: 100px;"> Text to Morse Code Converter</h1>
+    <br><br><br>
+
+<div class="po">
+    <div>
+
+        <textarea id="inputMorse" rows="4" cols="50"  placeholder="Enter the Morse Code" style="background-color: #b5bef7; font-size: 3rem;"></textarea>
+    </div>
+
+</div>
+<div class="po">
+    <div>
+
+        <textarea id="outputText" rows="4" cols="50"  placeholder="Text will appear here..." readonly style="font-size: 32px; background-color: #b5bef7; color: rgb(6, 14, 21);"></textarea>
+
+</div>
+</div>
+<script>
+   const morseCodeMap = {
+            '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F', '--.': 'G', '....': 'H', '..': 'I', '.---': 'J',
+            '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T',
+            '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y', '--..': 'Z',
+            '.----': '1', '..---': '2', '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8', '----.': '9', '-----': '0',
+            '': ' ' 
+        };
+
+        const morseToText = (morse) => {
+            return morse.trim().split(' ').map(code => morseCodeMap[code] || '').join('');
+        };
+
+        const inputMorse = document.getElementById('inputMorse');
+        const outputText = document.getElementById('outputText');
+
+        inputMorse.addEventListener('input', () => {
+            const morseValue = inputMorse.value.trim().replace(/\s+/g, ' '); 
+            outputText.value = morseToText(morseValue);
+        });
+</script>
+<br><br> <br><br> <br><br> <br><br> <br><br>
+    <footer style="background: #b5bef7; padding: 20px;">
+        <div class="social-media"  style="display: flex !important; justify-content:center !important; margin-top: 30px;">
+            <h3 style="padding: 10px; margin-right: 50px; text-align: start; font-size: 2rem; font-family: 'Times New Roman', Times, serif; font-weight: bolder;">Designed By <a href="https://www.linkedin.com/in/ankitkumar0705/"><span>Ankit</span></a></h3>
+            <a href="https://www.instagram.com/silentspeak09/"  style="color: aliceblue;margin-right: 50px !important; background: rgb(231, 138, 16); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-instagram-alt'></i></a>
+            <a href="https://www.linkedin.com/in/silent-speak/"  style="color: aliceblue; margin-right: 50px !important;background: rgb(29, 83, 190); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://www.youtube.com/@AvnishKumar-zv3xh"  style="color: aliceblue;margin-right: 50px !important; background: rgb(220, 19, 19); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-youtube'></i></a>
+        </div>
+ 
+     </footer>
+     <script src="js/script.js"></script>
+     <script src="js/video.js"></script>
+</body>
+</html>

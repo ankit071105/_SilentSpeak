@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silent Speak</title>
+<meta name="description" content="Silent Speak is a groundbreaking project transforming communication with Morse code technology. Learn about hardware, software, and applications for silent communication.">
+<meta name="keywords" content="silent speak, morse code, silent communication, hardware, software, app silent, silent speak website, morse code communication, communication app, assistive technology, accessibility technology">
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<link rel="shortcut icon" href="images/21.png" type="image/x-icon">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<style>
+    .card {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  display: inline-block;
+  font-size: 24px;
+  text-align: center;
+  line-height: 100px;
+  cursor: pointer;
+}
+
+.card.flipped {
+  background-color: #b3e5fc;
+  cursor: default;
+}
+.ok{
+    display: flex;
+    justify-content: center;
+}
+button{
+    padding: 20px;
+      font-size: 2rem;
+      border-radius: 8%;
+      border: 4px solid rgb(192, 241, 229);
+      background-color: #5863ad;
+      color:aliceblue ;
+}
+button:hover{
+    background-color: #b3e5fc;
+    color: #5863ad;
+}
+</style>
+</head>
+<body>
+    <header class="header" style="background-color: hsl(245, 100%, 80%);">
+      
+        <nav class="navbar">
+            <a href="ok.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+          <a href="video.html">Videos</a>
+            <a href="game.html">Game</a>
+            <a href="services.html">Services</a>
+        </nav>
+      
+    </header>
+     <br><br><br><br><br>
+     <h1 style="text-align: center; font-size: 3rem;">Matching <span>Cards</span></h1>
+    <div class="game-container">
+        <div class="cards" id="card-grid"></div>
+
+   <div class="ok">     <button onclick="restartGame()">Restart Game</button></div>
+      </div>
+      <br><br>
+      <footer style="background: #b5bef7; padding: 20px;">
+          <div class="social-media"  style="display: flex !important; justify-content:center !important; margin-top: 30px;">
+              <h3 style="padding: 10px; margin-right: 50px; text-align: start; font-size: 2rem; font-family: 'Times New Roman', Times, serif; font-weight: bolder;">Designed By <a href="https://www.linkedin.com/in/ankitkumar0705/"><span>Ankit</span></a></h3>
+              <a href="https://www.instagram.com/silentspeak09/"  style="color: aliceblue;margin-right: 50px !important; background: rgb(231, 138, 16); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-instagram-alt'></i></a>
+              <a href="https://www.linkedin.com/in/silent-speak/"  style="color: aliceblue; margin-right: 50px !important;background: rgb(29, 83, 190); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-linkedin'></i></a>
+              <a href="https://www.youtube.com/@AvnishKumar-zv3xh"  style="color: aliceblue;margin-right: 50px !important; background: rgb(220, 19, 19); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-youtube'></i></a>
+          </div>
+   
+       </footer>
+<script >
+  const alphabet = [
+  { letter: 'A', morse: '.-' },
+  { letter: 'B', morse: '-...' },
+  { letter: 'C', morse: '-.-.' },
+  { letter: 'D', morse: '-..' },
+  { letter: 'E', morse: '.' },
+  { letter: 'F', morse: '..-.' },
+  { letter: 'G', morse: '--.' },
+  { letter: 'H', morse: '....' },
+  { letter: 'I', morse: '..' },
+  { letter: 'J', morse: '.---' },
+  { letter: 'K', morse: '-.-' },
+  { letter: 'L', morse: '.-..' },
+  { letter: 'M', morse: '--' },
+  { letter: 'N', morse: '-.' },
+  { letter: 'O', morse: '---' },
+  { letter: 'P', morse: '.--.' },
+  { letter: 'Q', morse: '--.-' },
+  { letter: 'R', morse: '.-.' },
+  { letter: 'S', morse: '...' },
+  { letter: 'T', morse: '-' },
+  { letter: 'U', morse: '..-' },
+  { letter: 'V', morse: '...-' },
+  { letter: 'W', morse: '.--' },
+  { letter: 'X', morse: '-..-' },
+  { letter: 'Y', morse: '-.--' },
+  { letter: 'Z', morse: '--..' }
+];
+
+let cards = [];
+let flippedCards = [];
+let matchedCards = [];
+let gameStarted = false;
+
+function shuffle(array) {
+  let currentIndex = array.length, randomIndex;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+function createCards() {
+  const cardGrid = document.getElementById('card-grid');
+  alphabet.forEach((item) => {
+    for (let i = 0; i < 2; i++) {
+      cards.push({ letter: item.letter, morse: item.morse });
+    }
+  });
+  shuffle(cards);
+  cards.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.index = index;
+    card.dataset.letter = item.letter;
+    card.textContent = `${item.letter} - ?`; // Initially show letter and hide Morse code
+    card.addEventListener('click', () => flipCard(card));
+    cardGrid.appendChild(card);
+  });
+}
+
+function flipCard(card) {
+  if (!gameStarted) {
+    gameStarted = true;
+  }
+  if (!card.classList.contains('flipped') && flippedCards.length < 2) {
+    card.classList.add('flipped');
+    flippedCards.push(card);
+    if (flippedCards.length === 2) {
+      setTimeout(checkMatch, 1000);
+    }
+  }
+}
+
+function checkMatch() {
+  const card1 = flippedCards[0];
+  const card2 = flippedCards[1];
+  const index1 = parseInt(card1.dataset.index);
+  const index2 = parseInt(card2.dataset.index);
+
+  if (cards[index1].letter === cards[index2].letter) {
+    matchedCards.push(card1, card2);
+    if (matchedCards.length === cards.length) {
+      endGame(true); 
+    } else {
+      setTimeout(() => {
+        card1.textContent = `${cards[index1].letter} - ${cards[index1].morse}`;
+        card2.textContent = `${cards[index2].letter} - ${cards[index2].morse}`;
+      }, 500);
+    }
+  } else {
+    setTimeout(() => {
+      card1.textContent = `${cards[index1].letter} - ${cards[index1].morse}`;
+      card2.textContent = `${cards[index2].letter} - ${cards[index2].morse}`;
+      setTimeout(() => {
+        card1.classList.remove('flipped');
+        card2.classList.remove('flipped');
+        endGame(false); 
+      }, 1000);
+    }, 500);
+  }
+  flippedCards = [];
+}
+
+function endGame(win) {
+  let result = document.getElementById('result');
+  if (win) {
+    result.innerHTML = '<h2>Congratulations! You matched all the cards.</h2>';
+  } else {
+    result.innerHTML = '<h2>Game Over! You did not match all the cards.</h2>';
+  }
+  result.innerHTML += '<h3>Morse Codes for Alphabets:</h3>';
+  alphabet.forEach(item => {
+    result.innerHTML += `<p>${item.letter} - ${item.morse}</p>`;
+  });
+}
+
+function restartGame() {
+  const cardGrid = document.getElementById('card-grid');
+  cardGrid.innerHTML = '';
+  cards = [];
+  flippedCards = [];
+  matchedCards = [];
+  gameStarted = false;
+  createCards();
+  document.getElementById('result').innerHTML = '';
+}
+
+createCards();
+
+</script>
+<script src="js/script.js"></script>
+<script src="js/video.js"></script>
+</body>
+</html>

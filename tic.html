@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silent Speak</title>
+<meta name="description" content="Silent Speak is a groundbreaking project transforming communication with Morse code technology. Learn about hardware, software, and applications for silent communication.">
+<meta name="keywords" content="silent speak, morse code, silent communication, hardware, software, app silent, silent speak website, morse code communication, communication app, assistive technology, accessibility technology">
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<link rel="shortcut icon" href="images/21.png" type="image/x-icon">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<style>
+/* body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+} */
+
+.container {
+    text-align: center;
+    display: flex;
+    background-color: #f0f0f0;
+    justify-content: center;
+    align-items: center;
+    box-shadow:   12px 22px 3px hsl(244, 100%, 87%);
+}
+
+
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background-color: #f9f9f9;
+}
+
+.morse-code {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+</style>
+</head>
+<body>
+    <header class="header" style="background-color: hsl(244, 100%, 87%);">
+      
+        <nav class="navbar">
+            <a href="ok.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+          <a href="video.html">Videos</a>
+            <a href="game.html">Game</a>
+            <a href="services.html">Services</a>
+        </nav>
+      
+    </header>
+    <br><br><br><br><br>     <br><br><br><br><br>
+     
+     <h1 style="text-align: center;padding: 20px; font-size: 45px; background:hsl(244, 100%, 87%);">Tic Tac Toe
+        
+     </h1>
+     <br><br><br><br><br>
+     <div class="container">
+
+        <div class="board">
+            <div class="cell" data-cell="1">1</div>
+            <div class="cell" data-cell="2">2</div>
+            <div class="cell" data-cell="3">3</div>
+            <div class="cell" data-cell="4">4</div>
+            <div class="cell" data-cell="5">5</div>
+            <div class="cell" data-cell="6">6</div>
+            <div class="cell" data-cell="7">7</div>
+            <div class="cell" data-cell="8">8</div>
+            <div class="cell" data-cell="9">9</div>
+        </div>
+        
+
+    </div>
+  <div class="container">
+    <div class="morse-code">
+        <p id="morse-code-display" style="font-weight: bolder; font-size: 3rem;"></p>
+    </div>
+  </div>
+    <br><br><br><br><br>   
+    <br><br><br><br><br>
+<script>
+    const morseCodeMap = {
+    1: ".----",
+    2: "..---",
+    3: "...--",
+    4: "....-",
+    5: ".....",
+    6: "-....",
+    7: "--...",
+    8: "---..",
+    9: "----."
+};
+
+const cells = document.querySelectorAll('.cell');
+const morseCodeDisplay = document.getElementById('morse-code-display');
+
+cells.forEach(cell => {
+    cell.addEventListener('click', () => {
+        const cellNumber = cell.getAttribute('data-cell');
+        morseCodeDisplay.textContent = `Box ${cellNumber} ${morseCodeMap[cellNumber]}` ;
+    });
+});
+
+</script>
+
+
+      <br><br>
+      <footer style="background: #b5bef7; padding: 20px;">
+          <div class="social-media"  style="display: flex !important; justify-content:center !important; margin-top: 30px;">
+              <h3 style="padding: 10px; margin-right: 50px; text-align: start; font-size: 2rem; font-family: 'Times New Roman', Times, serif; font-weight: bolder;">Designed By <a href="https://www.linkedin.com/in/ankitkumar0705/"><span>Ankit</span></a></h3>
+              <a href="https://www.instagram.com/silentspeak09/"  style="color: aliceblue;margin-right: 50px !important; background: rgb(231, 138, 16); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-instagram-alt'></i></a>
+              <a href="https://www.linkedin.com/in/silent-speak/"  style="color: aliceblue; margin-right: 50px !important;background: rgb(29, 83, 190); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-linkedin'></i></a>
+              <a href="https://www.youtube.com/@AvnishKumar-zv3xh"  style="color: aliceblue;margin-right: 50px !important; background: rgb(220, 19, 19); font-size: 40px;border-radius: 50%; height: 60px;padding-left: 10px; padding-right: 10px;margin-right: 10px;"><i class='bx bxl-youtube'></i></a>
+          </div>
+   
+       </footer>
+       <script src="js/script.js"></script>
+       <script src="js/video.js"></script>
+</body>
+</html>
