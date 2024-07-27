@@ -13,9 +13,9 @@
 
 :root {
     --white-color: #53dbd2;
-    --bg-color: #c7cdf2;
-    --text-color: #3b0d76;
-    --main-color: #41670d;
+    --bg-color: #260046;
+    --text-color: #efe3fe;
+    --main-color: #c0e78a;
     --shadow-color: rgb(147, 195, 199);
 }
 
@@ -529,7 +529,7 @@ color: whitesmoke;
     align-items: center;
     flex-wrap: wrap;
     padding: 2rem 7%;
-    background: var(--main-color);
+background-color: #007bff !important;
 }
 
 .footer-text p {
